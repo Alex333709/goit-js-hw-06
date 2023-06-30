@@ -12,20 +12,14 @@ const images = [
     alt: "Group of Horses Running",
   },
 ];
-const gallery = document.querySelector(".gallery");
-//Отримуємо посилання на елемент <ul> з класом .gallery за допомогою document.querySelector('.gallery').
 
-//Створюємо функцію createGalleryItem, яка приймає об'єкт з властивостями url та alt. В цій функції ми створюємо розмітку для кожного елемента галереї використовуючи шаблонні рядки. Розмітка містить <li> елемент з класом .gallery-item і <img> елемент з властивостями src та alt, які отримуємо з об'єкта.
-const createGalleryItem = ({ url, alt }) => {
-  return `
-    <li class="gallery-item">
-      <img src="${url}" alt="${alt}" width="500">
-    </li>
-  `;
-};
+const galleryList = document.querySelector(".gallery");
 
-const galleryMarkup = images.map(createGalleryItem).join("");
-//Використовуємо метод map для перебору об'єктів в масиві images і виклику функції createGalleryItem для створення розмітки для кожного елемента галереї. Отримані розмітки з'єднуємо в один рядок за допомогою join('').
+const galleryMarkup = images
+  .map(
+    ({ url, alt }) =>
+      `<li class="gallery-item"><img src="${url}" alt="${alt}" width="500" height='300' ></li>`
+  )
+  .join("");
 
-gallery.insertAdjacentHTML("beforeend", galleryMarkup);
-//Використовуємо gallery.insertAdjacentHTML('beforeend', galleryMarkup) для вставки розмітки галереї в кінець елемента <ul> з класом .gallery. Метод insertAdjacentHTML дозволяє вставити HTML рядок вказаного контенту у вказане місце (в даному випадку, в кінець елемента <ul>).
+galleryList.insertAdjacentHTML("beforeend", galleryMarkup);
